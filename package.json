@@ -1,0 +1,24 @@
+{
+  "name": "memory-game-by-tiphaine",
+  "version": "1.0.0",
+  "description": "TRELLO DU PROJET : https://trello.com/b/j10Vi2OO/memory-game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tiphaine-dureau/memory-game-by-tiphaine.git"
+  },
+  "author": "tiphaine du Réau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tiphaine-dureau/memory-game-by-tiphaine/issues"
+  },
+  "homepage": "https://github.com/Tiphaine-dureau/memory-game-by-tiphaine#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

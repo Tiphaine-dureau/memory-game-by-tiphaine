@@ -7,12 +7,8 @@ html {
 }
 
 body{
-    background: linear-gradient(to right, #ADA996, #F2F2F2, #DBDBDB, #EAEAEA);
-}
-
-h1{
     background: linear-gradient(to right, #434343, #000000);
-    color: white;
+    color: #F2F2F2;
 }
 
 h1, h2{
@@ -29,4 +25,11 @@ h1, h2{
     padding: 6px;
 }
 
+.progress-bar{
+    background-color: rgb(62, 83, 42);
+}
 
+.progress-bar-last-seconds{
+    background-color: #744861;
+    color: #F2F2F2;
+}

@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body{
+    background: linear-gradient(to right, #ADA996, #F2F2F2, #DBDBDB, #EAEAEA);
+}
+
+h1{
+    background: linear-gradient(to right, #434343, #000000);
+    color: white;
+}
+
+h1, h2{
+    text-align: center;
+}
+
+@media screen and (min-width: 769px) {
+    .container {
+        max-width: 50%;
+    }
+}
+
+.col {
+    padding: 6px;
+}
+
+

@@ -1,7 +1,7 @@
 {
   "name": "memory-game-by-tiphaine",
   "version": "1.0.0",
-  "description": "TRELLO DU PROJET : https://trello.com/b/j10Vi2OO/memory-game",
+  "description": "Un simple jeu d'associations pour aiguiser sa mémoire",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

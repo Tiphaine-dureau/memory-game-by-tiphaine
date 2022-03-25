@@ -9,6 +9,7 @@ $(document).ready(() => {
 
 function init() {
     handlePlay();
+    createBoardGame();
 }
 
 /**
@@ -68,7 +69,7 @@ function changeProgressBarColor(backgroundClass) {
 
 // Déclaration du tableau de cartes
 
-let easyBoardCards = [
+const easyBoardCards = [
     {
         id: 1,
         name: 'butterfly',
@@ -101,32 +102,93 @@ let easyBoardCards = [
     },
     {
         id: 7,
-        name: 'pig',
-        img: 'assets/images/img-easy/pig.svg'
-    },
-    {
-        id: 8,
-        name: 'polar-bear',
-        img: 'assets/images/img-easy/polar-bear.svg'
-    },
-    {
-        id: 9,
-        name: 'rabbit',
-        img: 'assets/images/img-easy/rabbit.svg'
-    },
-    {
-        id: 10,
-        name: 'sheep',
-        img: 'assets/images/img-easy/sheep.svg'
-    },
-    {
-        id: 11,
         name: 'sperm-whale',
         img: 'assets/images/img-easy/whale.svg'
     },
     {
-        id: 12,
+        id: 8,
         name: 'tortoise',
         img: 'assets/images/img-easy/tortoise.svg'
-    }
+    },
+    {
+        id: 9,
+        name: 'butterfly',
+        img: 'assets/images/img-easy/butterfly.svg',
+    },
+    {
+        id: 10,
+        name: 'elephant',
+        img: 'assets/images/img-easy/elephant.svg'
+    },
+    {
+        id: 11,
+        name: 'flamingo',
+        img: 'assets/images/img-easy/flamingo.svg'
+    },
+    {
+        id: 12,
+        name: 'frog',
+        img: 'assets/images/img-easy/frog.svg'
+    },
+    {
+        id: 13,
+        name: 'koala',
+        img: 'assets/images/img-easy/koala.svg'
+    },
+    {
+        id: 14,
+        name: 'octopus',
+        img: 'assets/images/img-easy/octopus.svg'
+    },
+    {
+        id: 15,
+        name: 'sperm-whale',
+        img: 'assets/images/img-easy/whale.svg'
+    },
+    {
+        id: 16,
+        name: 'tortoise',
+        img: 'assets/images/img-easy/tortoise.svg'
+    },
 ]
+
+//Prototype changement image
+function switchImg() {
+    $('#1').click(() => {
+        $('#1 img:first-child').hide();
+        $('#1 img:nth-child(2)').show();
+    })
+}
+
+/**
+ * Affiche dynamiquement et aléatoirement les cases du plateau de jeu
+ */
+function createBoardGame() {
+    shuffleCards(easyBoardCards);
+    const sqrtBoard = Math.sqrt(easyBoardCards.length);
+    for (let i = 0; i < sqrtBoard; i++) {
+        const rowElement = `<div class="row" id="${i}"></div>`
+        $('#game-board').append(rowElement)
+        for (let j = 0; j < sqrtBoard; j++) {
+            const colElement = `<div class="col" id="${j}-${i}"></div>`
+            const rowId = `#${i}`
+            $(rowId).append(colElement)
+            const colId = `#${j}-${i}`
+            const currentCardId = (i * sqrtBoard) + j;
+            const cardImgSrc = easyBoardCards[currentCardId].img;
+            const imgElement = `<img src=${cardImgSrc} alt="images du jeu"/>`;
+            $(colId).append(imgElement);
+        }
+    }
+}
+
+/**
+ * Mélange les cartes en utilisant l'algo de Durstenfeld
+ * @param cards
+ */
+function shuffleCards(cards) {
+    for (let i = cards.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
+}

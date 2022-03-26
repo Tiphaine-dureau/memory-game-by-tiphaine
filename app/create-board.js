@@ -34,8 +34,11 @@ function createCol(j, i, rowId, boardSize) {
     const colIdSelector = `#${colId}`;
     const currentCardId = (i * boardSize) + j;
     const cardImgSrc = easyBoardCards[currentCardId].img;
-    const imgElement = `<img src=${cardImgSrc} alt="images du jeu"/>`;
-    $(colIdSelector).append(imgElement);
+    const imgFrontFace = `<img src=${cardImgSrc} alt="images du jeu" style="display: none"/>`;
+    const imgBackFace = `<img src="assets/images/time-bomb.svg" alt="dos des images"/>`
+    $(colIdSelector).append(imgBackFace);
+    $(colIdSelector).append(imgFrontFace);
+    addEventOnImageClick(colIdSelector);
 }
 
 /**
@@ -47,4 +50,10 @@ function shuffleCards(cards) {
         let j = Math.floor(Math.random() * (i + 1));
         [cards[i], cards[j]] = [cards[j], cards[i]];
     }
+}
+
+function addEventOnImageClick(colIdSelector) {
+    $(colIdSelector).click(() => {
+        onImageClick(colIdSelector);
+    });
 }

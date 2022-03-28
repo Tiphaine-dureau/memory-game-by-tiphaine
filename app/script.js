@@ -67,23 +67,14 @@ function changeProgressBarColor(backgroundClass) {
         .addClass(backgroundClass);
 }
 
-//Prototype changement image
-function switchImg() {
-    $('#1').click(() => {
-        $('#1 img:first-child').hide();
-        $('#1 img:nth-child(2)').show();
-    })
-}
-
 function onImageClick(colIdSelector) {
-    console.log(colIdSelector);
-    // TODO
-    /*
-        $('#1 img:first-child').hide();
-        $('#1 img:nth-child(2)').show();
-        const firstImgSelector = `#${} img:first-child`;
-        const secondImgSelector = `#${} nth-child(2)`;
-        $(firstImgSelector).hide();
-        $(secondImgSelector).show();
-     */
+    const backFaceSelector = `${colIdSelector} img:first-child`;
+    const frontFaceSelector = `${colIdSelector} img:nth-child(2)`;
+    if ($(backFaceSelector).css('display') === 'none') {
+        $(backFaceSelector).show();
+        $(frontFaceSelector).hide();
+    } else {
+        $(backFaceSelector).hide();
+        $(frontFaceSelector).show();
+    }
 }

@@ -34,8 +34,8 @@ function createCol(j, i, rowId, boardSize) {
     const colIdSelector = `#${colId}`;
     const currentCardId = (i * boardSize) + j;
     const cardImgSrc = easyBoardCards[currentCardId].img;
-    const imgFrontFace = `<img src=${cardImgSrc} alt="images du jeu" style="display: none"/>`;
     const imgBackFace = `<img src="assets/images/time-bomb.svg" alt="dos des images"/>`
+    const imgFrontFace = `<img src=${cardImgSrc} alt="images du jeu" style="display: none"/>`;
     $(colIdSelector).append(imgBackFace);
     $(colIdSelector).append(imgFrontFace);
     addEventOnImageClick(colIdSelector);

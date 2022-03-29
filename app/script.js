@@ -2,13 +2,17 @@
 /// VARIABLES
 //////////////////
 let timer;
+let isGameActive = false;
+let isEasyMode = true;
+let loadedCards;
+
 
 $(document).ready(() => {
     init();
 });
 
 function init() {
-    handlePlay();
+    addEventOnDifficultyClick();
     createBoardGame();
 }
 
@@ -16,10 +20,10 @@ function init() {
  * Au clic déclenche le chrono et la barre de progression.
  */
 function handlePlay() {
-    $('#start').click(function () {
+    if (!isGameActive) {
+        isGameActive = true;
         const maxTime = 20; // secondes
         let timeLeft = maxTime;
-        $('#start').attr('disabled', true);
         timer = setInterval(function () {
             timeLeft--;
             updateProgressBar(timeLeft, maxTime);
@@ -28,7 +32,7 @@ function handlePlay() {
                 handleEndGame();
             }
         }, 1000);
-    })
+    }
 }
 
 /**
@@ -36,7 +40,6 @@ function handlePlay() {
  */
 function handleEndGame() {
     clearInterval(timer);
-    $('#start').attr('disabled', false);
     $('#countdown').html('Temps écoulé !');
 }
 
@@ -67,14 +70,27 @@ function changeProgressBarColor(backgroundClass) {
         .addClass(backgroundClass);
 }
 
+/**
+ * Au clic affiche la face ou le dos de l'image en fonction ce qui est déjà visible
+ * @param colIdSelector
+ */
 function onImageClick(colIdSelector) {
+    handlePlay()
     const backFaceSelector = `${colIdSelector} img:first-child`;
     const frontFaceSelector = `${colIdSelector} img:nth-child(2)`;
-    if ($(backFaceSelector).css('display') === 'none') {
-        $(backFaceSelector).show();
-        $(frontFaceSelector).hide();
-    } else {
+    if ($(backFaceSelector).css('display') !== 'none') {
         $(backFaceSelector).hide();
         $(frontFaceSelector).show();
     }
+}
+
+function onDifficultyClick(easyMode) {
+    isEasyMode = easyMode;
+    createBoardGame();
+}
+
+function addEventOnDifficultyClick() {
+    $('#btn-radio-easy').click(() => onDifficultyClick(true));
+    $('#btn-radio-hard').click(() => onDifficultyClick(false));
+
 }

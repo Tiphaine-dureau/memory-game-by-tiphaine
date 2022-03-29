@@ -4,7 +4,7 @@
 let timer;
 let isGameActive = false;
 let isEasyMode = true;
-let loadedCards;
+let loadedCards = easyBoardCards;
 
 
 $(document).ready(() => {
@@ -22,16 +22,16 @@ function init() {
 function handlePlay() {
     if (!isGameActive) {
         isGameActive = true;
-        const maxTime = 20; // secondes
+        const maxTime = 90 /* secondes */ * 10;
         let timeLeft = maxTime;
         timer = setInterval(function () {
             timeLeft--;
             updateProgressBar(timeLeft, maxTime);
-            $('#countdown').html(`${timeLeft} secondes restantes`);
+            $('#countdown').html(`${(timeLeft / 10).toFixed(0)} secondes restantes`);
             if (timeLeft <= 0) {
                 handleEndGame();
             }
-        }, 1000);
+        }, 100);
     }
 }
 

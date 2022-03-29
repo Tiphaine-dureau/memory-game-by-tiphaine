@@ -50,7 +50,7 @@ function handleEndGame() {
  */
 function updateProgressBar(timeLeft, maxTime) {
     const currentPercent = ((1 * timeLeft) / maxTime) * 100;
-    $('#load').css('width', `${currentPercent}%`);
+    setProgressBarWidth(currentPercent);
     if (currentPercent <= 50 && currentPercent > 10) {
         changeProgressBarColor('bg-warning');
     } else if (currentPercent <= 10) {
@@ -70,6 +70,15 @@ function changeProgressBarColor(backgroundClass) {
         .addClass(backgroundClass);
 }
 
+function setProgressBarWidth(percent = 100) {
+    $('#load').css('width', `${percent}%`);
+}
+
+function resetProgressBar() {
+    setProgressBarWidth();
+    changeProgressBarColor('bg-success');
+}
+
 /**
  * Au clic affiche la face ou le dos de l'image en fonction ce qui est déjà visible
  * @param colIdSelector
@@ -86,6 +95,9 @@ function onImageClick(colIdSelector) {
 
 function onDifficultyClick(easyMode) {
     isEasyMode = easyMode;
+    if (isGameActive) {
+        resetGame();
+    }
     createBoardGame();
 }
 
@@ -93,4 +105,11 @@ function addEventOnDifficultyClick() {
     $('#btn-radio-easy').click(() => onDifficultyClick(true));
     $('#btn-radio-hard').click(() => onDifficultyClick(false));
 
+}
+
+function resetGame() {
+    isGameActive = false;
+    clearInterval(timer);
+    $('#countdown').html('');
+    resetProgressBar();
 }

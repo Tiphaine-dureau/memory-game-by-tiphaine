@@ -1,10 +1,11 @@
 //////////////////
 /// VARIABLES
 //////////////////
-let timer;
+let gameTimer;
 let isGameActive = false;
 let isEasyMode = true;
 let loadedCards = easyBoardCards;
+let firstCardIdSelector;
 
 
 $(document).ready(() => {
@@ -19,12 +20,12 @@ function init() {
 /**
  * Au clic déclenche le chrono et la barre de progression.
  */
-function handlePlay() {
+function startGameIfInactive() {
     if (!isGameActive) {
         isGameActive = true;
         const maxTime = 90 /* secondes */ * 10;
         let timeLeft = maxTime;
-        timer = setInterval(function () {
+        gameTimer = setInterval(function () {
             timeLeft--;
             updateProgressBar(timeLeft, maxTime);
             $('#countdown').html(`${(timeLeft / 10).toFixed(0)} secondes restantes`);
@@ -39,7 +40,7 @@ function handlePlay() {
  * Gère la fin d'une partie
  */
 function handleEndGame() {
-    clearInterval(timer);
+    clearInterval(gameTimer);
     $('#countdown').html('Temps écoulé !');
 }
 
@@ -84,12 +85,29 @@ function resetProgressBar() {
  * @param colIdSelector
  */
 function onImageClick(colIdSelector) {
-    handlePlay()
-    const backFaceSelector = `${colIdSelector} img:first-child`;
-    const frontFaceSelector = `${colIdSelector} img:nth-child(2)`;
+    startGameIfInactive();
+    const backFaceSelector = getBackFaceSelector(colIdSelector);
+    const frontFaceSelector = getFrontFaceSelector(colIdSelector);
     if ($(backFaceSelector).css('display') !== 'none') {
         $(backFaceSelector).hide();
         $(frontFaceSelector).show();
+    }
+    if (firstCardIdSelector === undefined) {
+        firstCardIdSelector = colIdSelector;
+    } else {
+        const firstCardId = getCardIdFromSelector(firstCardIdSelector);
+        const secondCardId = getCardIdFromSelector(colIdSelector);
+        const isSameCard = loadedCards[secondCardId].name === loadedCards[firstCardId].name;
+        if (!isSameCard) {
+            setTimeout(() => {
+                // Carte qui vient d'être cliquée
+                $(backFaceSelector).show();
+                $(frontFaceSelector).hide();
+                // Première carte déjà retournée
+                $(getBackFaceSelector(firstCardIdSelector)).show();
+                $(getFrontFaceSelector(firstCardIdSelector)).hide();
+            }, 1000)
+        }
     }
 }
 
@@ -109,7 +127,7 @@ function addEventOnDifficultyClick() {
 
 function resetGame() {
     isGameActive = false;
-    clearInterval(timer);
+    clearInterval(gameTimer);
     $('#countdown').html('');
     resetProgressBar();
 }

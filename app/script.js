@@ -6,6 +6,7 @@ let isGameActive = false;
 let isEasyMode = true;
 let loadedCards = easyBoardCards;
 let firstCardIdSelector;
+let userCanPlay = true;
 
 
 $(document).ready(() => {
@@ -85,6 +86,9 @@ function resetProgressBar() {
  * @param colIdSelector
  */
 function onImageClick(colIdSelector) {
+    if (!userCanPlay) {
+        return;
+    }
     startGameIfInactive();
     const backFaceSelector = getBackFaceSelector(colIdSelector);
     const frontFaceSelector = getFrontFaceSelector(colIdSelector);
@@ -99,6 +103,7 @@ function onImageClick(colIdSelector) {
         const secondCardId = getCardIdFromSelector(colIdSelector);
         const isSameCard = loadedCards[secondCardId].name === loadedCards[firstCardId].name;
         if (!isSameCard) {
+            userCanPlay = false;
             setTimeout(() => {
                 // Carte qui vient d'être cliquée
                 $(backFaceSelector).show();
@@ -106,7 +111,11 @@ function onImageClick(colIdSelector) {
                 // Première carte déjà retournée
                 $(getBackFaceSelector(firstCardIdSelector)).show();
                 $(getFrontFaceSelector(firstCardIdSelector)).hide();
+                firstCardIdSelector = undefined;
+                userCanPlay = true;
             }, 1000)
+        } else {
+            // TODO si les cartes sont les mêmes
         }
     }
 }

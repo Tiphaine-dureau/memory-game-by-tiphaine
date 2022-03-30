@@ -30,3 +30,16 @@ h1, h2, footer {
 .memory-card {
     cursor: pointer;
 }
+
+.memory-card:hover {
+    animation: zoom-card 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes zoom-card {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}

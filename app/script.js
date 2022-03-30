@@ -7,6 +7,7 @@ let isEasyMode = true;
 let loadedCards = easyBoardCards;
 let firstCardIdSelector;
 let userCanPlay = true;
+let foundCardPairIds = [];
 
 
 $(document).ready(() => {
@@ -95,6 +96,8 @@ function onImageClick(colIdSelector) {
     if ($(backFaceSelector).css('display') !== 'none') {
         $(backFaceSelector).hide();
         $(frontFaceSelector).show();
+    } else {
+        return;
     }
     if (firstCardIdSelector === undefined) {
         firstCardIdSelector = colIdSelector;
@@ -113,19 +116,26 @@ function onImageClick(colIdSelector) {
                 $(getFrontFaceSelector(firstCardIdSelector)).hide();
                 firstCardIdSelector = undefined;
                 userCanPlay = true;
-            }, 1000)
+            }, 500)
         } else {
-            // TODO si les cartes sont les mêmes
+            firstCardIdSelector = undefined;
+            foundCardPairIds.push(firstCardId, secondCardId);
+            const isGameWon = getIsGameWon();
+            if (isGameWon) {
+                handleGameWon();
+            }
         }
     }
 }
 
+function handleGameWon() {
+    openWinToast();
+    resetGame();
+}
+
 function onDifficultyClick(easyMode) {
     isEasyMode = easyMode;
-    if (isGameActive) {
-        resetGame();
-    }
-    createBoardGame();
+    resetGame();
 }
 
 function addEventOnDifficultyClick() {
@@ -136,7 +146,15 @@ function addEventOnDifficultyClick() {
 
 function resetGame() {
     isGameActive = false;
+    firstCardIdSelector = undefined;
     clearInterval(gameTimer);
     $('#countdown').html('');
     resetProgressBar();
+    createBoardGame();
+}
+
+function openWinToast() {
+    let toastLiveExample = document.getElementById('liveToast');
+    let toast = new bootstrap.Toast(toastLiveExample);
+    toast.show();
 }

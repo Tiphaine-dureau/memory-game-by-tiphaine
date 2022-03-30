@@ -18,3 +18,7 @@ function getBackFaceSelector(colIdSelector) {
 function getFrontFaceSelector(colIdSelector) {
     return `${colIdSelector} img:nth-child(2)`;
 }
+
+function getIsGameWon() {
+    return foundCardPairIds.length === loadedCards.length;
+}

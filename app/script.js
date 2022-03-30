@@ -9,6 +9,7 @@ let firstCardIdSelector;
 let userCanPlay = true;
 let foundCardPairIds = [];
 let maxTime = 90; // en secondes
+let timeTickLeft;
 
 
 $(document).ready(() => {
@@ -27,12 +28,12 @@ function startGameIfInactive() {
     if (!isGameActive) {
         isGameActive = true;
         const numberOfTick = maxTime /* secondes */ * 10;
-        let timeLeft = numberOfTick;
+        timeTickLeft = numberOfTick;
         gameTimer = setInterval(function () {
-            timeLeft--;
-            updateProgressBar(timeLeft, numberOfTick);
-            $('#countdown').html(`${(timeLeft / 10).toFixed(0)}s`);
-            if (timeLeft <= 0) {
+            timeTickLeft--;
+            updateProgressBar(timeTickLeft, numberOfTick);
+            $('#countdown').html(`${(timeTickLeft / 10).toFixed(0)}s`);
+            if (timeTickLeft <= 0) {
                 handleEndGame();
             }
         }, 100);
@@ -145,6 +146,7 @@ function addEventOnDifficultyClick() {
 function resetGame() {
     isGameActive = false;
     firstCardIdSelector = undefined;
+    foundCardPairIds = [];
     clearInterval(gameTimer);
     $('#countdown').html(`${maxTime}s`);
     resetProgressBar();
@@ -156,6 +158,6 @@ function openToast(isGameWon = true) {
     let toast = new bootstrap.Toast(toastLiveExample);
     changeBackgroundClass('#toastText', isGameWon ? 'bg-success' : 'bg-danger');
     $('#toastTitle').html(isGameWon ? 'Bravo !' : 'Temps écoulé !');
-    $('#toastText').html(isGameWon ? 'Vous avez gagné :)' : 'Vous avez perdu :(');
+    $('#toastText').html(isGameWon ? `Vous avez gagné en ${maxTime - (timeTickLeft / 10).toFixed(0)}s` : 'Vous avez perdu :(');
     toast.show();
 }

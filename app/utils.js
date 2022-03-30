@@ -22,3 +22,11 @@ function getFrontFaceSelector(colIdSelector) {
 function getIsGameWon() {
     return foundCardPairIds.length === loadedCards.length;
 }
+
+function changeBackgroundClass(selector, backgroundClass) {
+    $(selector)
+        .removeClass('bg-success')
+        .removeClass('bg-warning')
+        .removeClass('bg-danger')
+        .addClass(backgroundClass);
+}

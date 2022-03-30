@@ -43,7 +43,8 @@ function startGameIfInactive() {
  */
 function handleEndGame() {
     clearInterval(gameTimer);
-    $('#countdown').html('Temps écoulé !');
+    openToast(false);
+    resetGame();
 }
 
 /**
@@ -66,11 +67,7 @@ function updateProgressBar(timeLeft, maxTime) {
  * @param backgroundClass (bg-success | bg-warning | bg-danger)
  */
 function changeProgressBarColor(backgroundClass) {
-    $('.progress-bar')
-        .removeClass('bg-success')
-        .removeClass('bg-warning')
-        .removeClass('bg-danger')
-        .addClass(backgroundClass);
+    changeBackgroundClass('.progress-bar', backgroundClass);
 }
 
 function setProgressBarWidth(percent = 100) {
@@ -129,7 +126,7 @@ function onImageClick(colIdSelector) {
 }
 
 function handleGameWon() {
-    openWinToast();
+    openToast();
     resetGame();
 }
 
@@ -153,8 +150,11 @@ function resetGame() {
     createBoardGame();
 }
 
-function openWinToast() {
+function openToast(isGameWon = true) {
     let toastLiveExample = document.getElementById('liveToast');
     let toast = new bootstrap.Toast(toastLiveExample);
+    changeBackgroundClass('#liveToast', isGameWon ? 'bg-success' : 'bg-danger');
+    $('#toastTitle').html(isGameWon ? 'Bravo !' : 'Temps écoulé !');
+    $('#toastText').html(isGameWon ? 'Vous avez gagné :)' : 'Vous avez perdu :(');
     toast.show();
 }

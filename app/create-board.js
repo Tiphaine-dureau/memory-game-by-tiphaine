@@ -29,7 +29,7 @@ function createCols(i, rowId) {
 
 function createCol(j, i, rowId) {
     const colId = `col-${i}-${j}`;
-    const colElement = `<div class="col" id="${colId}"></div>`;
+    const colElement = `<div class="col pb-4 memory-card" id="${colId}"></div>`;
     const rowIdSelector = `#${rowId}`;
     $(rowIdSelector).append(colElement);
     const colIdSelector = `#${colId}`;

@@ -11,13 +11,13 @@ body {
     color: #F2F2F2;
 }
 
-h1, h2 {
+h1, h2, footer {
     text-align: center;
 }
 
 @media screen and (min-width: 426px) and (max-width: 1023px) {
     .container {
-        max-width: 60%;
+        max-width: 75%;
     }
 }
 
@@ -27,6 +27,6 @@ h1, h2 {
     }
 }
 
-.col {
-    padding: 6px;
+.memory-card {
+    cursor: pointer;
 }

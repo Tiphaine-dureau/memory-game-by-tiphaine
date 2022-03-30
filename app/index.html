@@ -13,17 +13,22 @@
 </head>
 <body>
 <header>
-    <h1>Memory-game</h1>
+    <h1 class="pt-1">Memory-game</h1>
 </header>
 <main class="container">
-    <section>
-        <div>
-            <div id="countdown"></div>
-            <div class="progress">
-                <div class="progress-bar bg-success" id="load" role="progressbar" style="width: 100%" aria-valuenow="0"
-                     aria-valuemin="0"
-                     aria-valuemax="100">
+    <section class="pb-3">
+        <div class="row align-items-center">
+            <div class="col-10">
+                <div class="progress">
+                    <div class="progress-bar bg-success" id="load" role="progressbar" style="width: 100%"
+                         aria-valuenow="0"
+                         aria-valuemin="0"
+                         aria-valuemax="100">
+                    </div>
                 </div>
+            </div>
+            <div class="col-2">
+                <div id="countdown" class="text-end"></div>
             </div>
         </div>
     </section>
@@ -43,10 +48,10 @@
         </div>
     </section>
     <!-- RESULT TOAST -->
-    <div class="toast-container position-absolute bottom-0 end-0 p-3 top-0 start-50 translate-middle-x"
+    <div class="toast-container position-absolute bottom-0 end-0 p-3 top-50 start-50 translate-middle"
          style="z-index: 11">
-        <div id="liveToast" class="toast bg-success" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-white">
                 <div id="toastTitle" class="me-auto"></div>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
@@ -55,7 +60,7 @@
     </div>
 
 </main>
-<footer>@Tiphaine du Réau</footer>
+<footer class="py-2">@Tiphaine du Réau</footer>
 
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
 <script src="data.js"></script>

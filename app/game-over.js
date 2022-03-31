@@ -17,7 +17,7 @@ function handleGameWon() {
 
 function resetGame() {
     isGameActive = false;
-    firstCardIdSelector = undefined;
+    firstCardIndex = undefined;
     foundCardPairIds = [];
     clearInterval(gameTimer);
     $('#countdown').html(`${maxTime}s`);

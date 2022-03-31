@@ -2,9 +2,9 @@ function addDomEvents() {
     addEventOnDifficultyClick();
 }
 
-function addEventOnImageClick(colIdSelector) {
-    $(colIdSelector).click(() => {
-        onImageClick(colIdSelector);
+function addEventOnImageClick(cardIndex) {
+    $(`#${cardIndex}`).click(() => {
+        onImageClick(cardIndex);
     });
 }
 

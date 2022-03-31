@@ -24,27 +24,26 @@ function startGameIfNotActive() {
 
 /**
  * Au clic affiche la face ou le dos de l'image en fonction ce qui est déjà visible
- * @param colIdSelector
+ * @param cardIndex
  */
-function onImageClick(colIdSelector) {
+function onImageClick(cardIndex) {
     if (!userCanPlay) {
         return;
     }
     startGameIfNotActive();
-    const backFaceSelector = getBackFaceSelector(colIdSelector);
-    const frontFaceSelector = getFrontFaceSelector(colIdSelector);
+    const backFaceSelector = getBackFaceSelector(cardIndex);
+    const frontFaceSelector = getFrontFaceSelector(cardIndex);
     if ($(backFaceSelector).css('display') !== 'none') {
         $(backFaceSelector).hide();
         $(frontFaceSelector).show();
     } else {
         return;
     }
-    if (firstCardIdSelector === undefined) {
-        firstCardIdSelector = colIdSelector;
+    if (firstCardIndex === undefined) {
+        firstCardIndex = cardIndex;
     } else {
-        const firstCardId = getCardIdFromSelector(firstCardIdSelector);
-        const secondCardId = getCardIdFromSelector(colIdSelector);
-        const isSameCard = loadedCards[secondCardId].name === loadedCards[firstCardId].name;
+        const secondCardIndex = cardIndex;
+        const isSameCard = loadedCards[secondCardIndex].name === loadedCards[firstCardIndex].name;
         if (!isSameCard) {
             userCanPlay = false;
             setTimeout(() => {
@@ -52,14 +51,14 @@ function onImageClick(colIdSelector) {
                 $(backFaceSelector).show();
                 $(frontFaceSelector).hide();
                 // Première carte déjà retournée
-                $(getBackFaceSelector(firstCardIdSelector)).show();
-                $(getFrontFaceSelector(firstCardIdSelector)).hide();
-                firstCardIdSelector = undefined;
+                $(getBackFaceSelector(firstCardIndex)).show();
+                $(getFrontFaceSelector(firstCardIndex)).hide();
+                firstCardIndex = undefined;
                 userCanPlay = true;
             }, 500)
         } else {
-            firstCardIdSelector = undefined;
-            foundCardPairIds.push(firstCardId, secondCardId);
+            firstCardIndex = undefined;
+            foundCardPairIds.push(firstCardIndex, secondCardIndex);
             const isGameWon = getIsGameWon();
             if (isGameWon) {
                 handleGameWon();

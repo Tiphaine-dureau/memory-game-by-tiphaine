@@ -20,11 +20,11 @@ function getIsGameWon() {
 
 /**
  * La carte est révélée si la backface est masquée (dislay = none)
- * @param backFaceSelector
+ * @param cardIndex
  * @returns {boolean}
  */
-function isCardRevealed(backFaceSelector) {
-    return $(backFaceSelector).css('display') === 'none';
+function isCardRevealed(cardIndex) {
+    return $(getBackFaceSelector(cardIndex)).css('display') === 'none';
 }
 
 function changeBackgroundClass(selector, backgroundClass) {

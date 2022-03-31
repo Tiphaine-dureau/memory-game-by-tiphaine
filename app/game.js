@@ -32,7 +32,7 @@ function startGameIfNotActive() {
  * @param cardIndex
  */
 function onCardClick(cardIndex) {
-    if (!g_userCanPlay || isCardRevealed(getBackFaceSelector(cardIndex))) {
+    if (!g_userCanPlay || isCardRevealed(cardIndex)) {
         return;
     }
     startGameIfNotActive();
@@ -79,7 +79,7 @@ function handleSameCards(secondCardIndex) {
 function toggleCard(cardIndex) {
     const backFaceSelector = getBackFaceSelector(cardIndex);
     const frontFaceSelector = getFrontFaceSelector(cardIndex);
-    if (isCardRevealed(getBackFaceSelector(cardIndex))) {
+    if (isCardRevealed(cardIndex)) {
         $(backFaceSelector).show();
         $(frontFaceSelector).hide();
     } else {

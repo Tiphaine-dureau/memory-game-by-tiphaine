@@ -17,7 +17,7 @@ function startCountdown() {
 
 /**
  * Commence le jeu et le chrono
- * On va regarder a chaque clic d'image si on doit démarrer la partie
+ * On va regarder a chaque clic d'une carte si on doit démarrer la partie
  * (puisqu'il n'y a pas de bouton jouer)
  */
 function startGameIfNotActive() {
@@ -28,27 +28,27 @@ function startGameIfNotActive() {
 }
 
 /**
- * Gère le click sur une image
+ * Gère le click sur une carte
  * @param cardIndex
  */
-function onImageClick(cardIndex) {
+function onCardClick(cardIndex) {
     if (!g_userCanPlay || isCardRevealed(getBackFaceSelector(cardIndex))) {
         return;
     }
     startGameIfNotActive();
     toggleCard(cardIndex);
     if (g_firstCardIndex === undefined) {
-        onFirstImageClick(cardIndex);
+        onFirstCardClick(cardIndex);
     } else {
-        onSecondImageClick(cardIndex);
+        onSecondCardClick(cardIndex);
     }
 }
 
-function onFirstImageClick(cardIndex) {
+function onFirstCardClick(cardIndex) {
     g_firstCardIndex = cardIndex;
 }
 
-function onSecondImageClick(secondCardIndex) {
+function onSecondCardClick(secondCardIndex) {
     const isSameCard = g_loadedCards[secondCardIndex].name === g_loadedCards[g_firstCardIndex].name;
     if (!isSameCard) {
         handleDifferentCards(secondCardIndex);

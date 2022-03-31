@@ -39,5 +39,5 @@ function createCol(j, i, rowId) {
     const imgFrontFace = `<img src=${cardImgSrc} alt="images du jeu" style="display: none"/>`;
     $(colIdSelector).append(imgBackFace);
     $(colIdSelector).append(imgFrontFace);
-    addEventOnImageClick(cardIndex);
+    addEventOnCardClick(cardIndex);
 }

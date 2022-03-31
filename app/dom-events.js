@@ -7,9 +7,9 @@ function addDomEvents() {
  *
  * @param cardIndex
  */
-function addEventOnImageClick(cardIndex) {
+function addEventOnCardClick(cardIndex) {
     $(`#${cardIndex}`).click(() => {
-        onImageClick(cardIndex);
+        onCardClick(cardIndex);
     });
 }
 

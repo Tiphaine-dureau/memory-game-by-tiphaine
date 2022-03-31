@@ -1,5 +1,5 @@
 /**
- * Gère la fin d'une partie perdue
+ * Gère la fin d'une partie perdue : réinitialise chrono , fait apparaitre un toast, réinitialise la partie
  */
 function handleGameLost() {
     clearInterval(gameTimer);
@@ -8,13 +8,16 @@ function handleGameLost() {
 }
 
 /**
- * Gère la fin d'une partie gagnée
+ * Gère la fin d'une partie gagnée : fait apparaitre un toast, réintialise la partie
  */
 function handleGameWon() {
     openToast();
     resetGame();
 }
 
+/**
+ * Réintialise la partie
+ */
 function resetGame() {
     isGameActive = false;
     firstCardIndex = undefined;

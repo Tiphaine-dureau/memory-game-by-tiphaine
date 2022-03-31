@@ -1,6 +1,6 @@
 /**
- * Au clic sur carte, déclenche le chrono et la barre de progression
- * Appelle un évènement de fin de chrono
+ * Gestion du timer et de la barre de progression
+ * A la fin du Chrono appelle un évènement de partie perdue
  */
 function startCountdown() {
     const numberOfTick = maxTime /* secondes */ * 10;
@@ -15,6 +15,11 @@ function startCountdown() {
     }, 100);
 }
 
+/**
+ * Commence le jeu et le chrono
+ * On va regarder a chaque clic d'image si on doit démarrer la partie
+ * (puisqu'il n'y a pas de bouton jouer)
+ */
 function startGameIfNotActive() {
     if (!isGameActive) {
         startCountdown();
@@ -23,26 +28,19 @@ function startGameIfNotActive() {
 }
 
 /**
- * Au clic affiche la face ou le dos de l'image en fonction ce qui est déjà visible
+ * Gère le click sur une image
  * @param cardIndex
  */
 function onImageClick(cardIndex) {
-    if (!userCanPlay) {
-        return;
-    }
-    const backFaceSelector = getBackFaceSelector(cardIndex);
-    if (isCardRevealed(backFaceSelector)) {
-        // On ne fait rien si l'utilisateur a cliqué sur une carte déjà révélée
+    if (!userCanPlay || isCardRevealed(getBackFaceSelector(cardIndex))) {
         return;
     }
     startGameIfNotActive();
-    const frontFaceSelector = getFrontFaceSelector(cardIndex);
-    $(backFaceSelector).hide();
-    $(frontFaceSelector).show();
+    toggleCard(cardIndex);
     if (firstCardIndex === undefined) {
         onFirstImageClick(cardIndex);
     } else {
-        onSecondImageClick(backFaceSelector, frontFaceSelector, cardIndex);
+        onSecondImageClick(cardIndex);
     }
 }
 
@@ -50,31 +48,26 @@ function onFirstImageClick(cardIndex) {
     firstCardIndex = cardIndex;
 }
 
-function onSecondImageClick(backFaceSelector, frontFaceSelector, cardIndex) {
-    const secondCardIndex = cardIndex;
+function onSecondImageClick(secondCardIndex) {
     const isSameCard = loadedCards[secondCardIndex].name === loadedCards[firstCardIndex].name;
     if (!isSameCard) {
-        handleDifferentCard(backFaceSelector, frontFaceSelector);
+        handleDifferentCards(secondCardIndex);
     } else {
-        handleSameCard(secondCardIndex);
+        handleSameCards(secondCardIndex);
     }
 }
 
-function handleDifferentCard(backFaceSelector, frontFaceSelector) {
+function handleDifferentCards(secondCardIndex) {
     userCanPlay = false;
     setTimeout(() => {
-        // Carte qui vient d'être cliquée
-        $(backFaceSelector).show();
-        $(frontFaceSelector).hide();
-        // Première carte déjà retournée
-        $(getBackFaceSelector(firstCardIndex)).show();
-        $(getFrontFaceSelector(firstCardIndex)).hide();
+        toggleCard(secondCardIndex);
+        toggleCard(firstCardIndex);
         firstCardIndex = undefined;
         userCanPlay = true;
     }, 500)
 }
 
-function handleSameCard(secondCardIndex) {
+function handleSameCards(secondCardIndex) {
     firstCardIndex = undefined;
     foundCardPairIds.push(firstCardIndex, secondCardIndex);
     const isGameWon = getIsGameWon();
@@ -83,6 +76,14 @@ function handleSameCard(secondCardIndex) {
     }
 }
 
-function toggleCard() {
-    // TODO affiche ou masque la carte
+function toggleCard(cardIndex) {
+    const backFaceSelector = getBackFaceSelector(cardIndex);
+    const frontFaceSelector = getFrontFaceSelector(cardIndex);
+    if (isCardRevealed(getBackFaceSelector(cardIndex))) {
+        $(backFaceSelector).show();
+        $(frontFaceSelector).hide();
+    } else {
+        $(backFaceSelector).hide();
+        $(frontFaceSelector).show();
+    }
 }

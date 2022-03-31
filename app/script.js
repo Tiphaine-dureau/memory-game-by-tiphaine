@@ -15,6 +15,9 @@ $(document).ready(() => {
     init();
 });
 
+/**
+ * Réinitialise le jeu au choix de la difficulté
+ */
 function init() {
     addDomEvents();
     resetGame();

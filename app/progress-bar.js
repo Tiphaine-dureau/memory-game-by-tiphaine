@@ -21,10 +21,17 @@ function changeProgressBarColor(backgroundClass) {
     changeBackgroundClass('.progress-bar', backgroundClass);
 }
 
+/**
+ * Initialise la taille de remplissage de la progress barre
+ * @param percent
+ */
 function setProgressBarWidth(percent = 100) {
     $('#load').css('width', `${percent}%`);
 }
 
+/**
+ * Réinitialise la progressBar : remplissage et couleur
+ */
 function resetProgressBar() {
     setProgressBarWidth();
     changeProgressBarColor('bg-success');

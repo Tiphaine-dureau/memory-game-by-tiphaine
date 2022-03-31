@@ -1,4 +1,4 @@
-// Déclaration du tableau de cartes
+// Déclaration du tableau de cartes faciles
 const easyBoardCards = [
     {
         name: 'butterfly'
@@ -49,6 +49,8 @@ const easyBoardCards = [
         name: 'tortoise'
     },
 ]
+
+//Déclaration du tableau des cartes difficiles
 const hardBoardCards = [
     {
         name: 'blade-bite'

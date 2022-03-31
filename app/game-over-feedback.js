@@ -1,3 +1,7 @@
+/**
+ * Gère l'apparition du toast en fonction du statut de la fin de partie
+ * @param isGameWon
+ */
 function openToast(isGameWon = true) {
     let toastLiveExample = document.getElementById('liveToast');
     let toast = new bootstrap.Toast(toastLiveExample);

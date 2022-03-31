@@ -1,10 +1,12 @@
-
+/**
+ * Initialisation des évènements liés au DOM
+ */
 function addDomEvents() {
     addEventOnDifficultyClick();
 }
 
 /**
- *
+ *Au click appelle la fonction qui gère le retournement des cartes
  * @param cardIndex
  */
 function addEventOnCardClick(cardIndex) {
@@ -14,7 +16,7 @@ function addEventOnCardClick(cardIndex) {
 }
 
 /**
- * Au click change la difficulté du jeu
+ * Au click sur les boutons change la difficulté du jeu
  */
 function addEventOnDifficultyClick() {
     $('#btn-radio-easy').click(() => onDifficultyClick(true));

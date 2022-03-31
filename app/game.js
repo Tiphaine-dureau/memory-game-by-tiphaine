@@ -1,6 +1,6 @@
 /**
  * Gestion du timer et de la barre de progression
- * A la fin du Chrono appelle un évènement de partie perdue
+ * A la fin du timer appelle  l'évènement de partie perdue
  */
 function startCountdown() {
     const numberOfTick = g_maxTime /* secondes */ * 10;
@@ -16,7 +16,7 @@ function startCountdown() {
 }
 
 /**
- * Commence le jeu et le chrono
+ * Commence le jeu et le timer
  * On va regarder a chaque clic d'une carte si on doit démarrer la partie
  * (puisqu'il n'y a pas de bouton jouer)
  */
@@ -28,7 +28,8 @@ function startGameIfNotActive() {
 }
 
 /**
- * Gère le click sur une carte
+ * Au clic sur la première carte commence le jeu, switch l'image et récupère son index
+ * Au click sur la seconde carte : switch l'image, récupère l'index de la carte et compare les cartes
  * @param cardIndex
  */
 function onCardClick(cardIndex) {
@@ -44,10 +45,18 @@ function onCardClick(cardIndex) {
     }
 }
 
+/**
+ * Garde l'index de la première carte cliquée
+ * @param cardIndex
+ */
 function onFirstCardClick(cardIndex) {
     g_firstCardIndex = cardIndex;
 }
 
+/**
+ * Au click sur la seconde image vérifie si les cartes sont identiques et agit en conséquence
+ * @param secondCardIndex
+ */
 function onSecondCardClick(secondCardIndex) {
     const isSameCard = g_loadedCards[secondCardIndex].name === g_loadedCards[g_firstCardIndex].name;
     if (!isSameCard) {
@@ -57,6 +66,10 @@ function onSecondCardClick(secondCardIndex) {
     }
 }
 
+/**
+ * Si les cartes sont différentes : retourne les deux cartes après un certain temps
+ * @param secondCardIndex
+ */
 function handleDifferentCards(secondCardIndex) {
     g_userCanPlay = false;
     setTimeout(() => {
@@ -67,6 +80,11 @@ function handleDifferentCards(secondCardIndex) {
     }, 500)
 }
 
+/**
+ * Si il y a paire : mets les deux index de carte dans un tableau
+ * Vérifie si le tableau est complet et si c'est le cas gère l'évènement de partie gagante
+ * @param secondCardIndex
+ */
 function handleSameCards(secondCardIndex) {
     g_firstCardIndex = undefined;
     g_foundCardPairIds.push(g_firstCardIndex, secondCardIndex);
@@ -76,6 +94,10 @@ function handleSameCards(secondCardIndex) {
     }
 }
 
+/**
+ * Gère le switch des cartes
+ * @param cardIndex
+ */
 function toggleCard(cardIndex) {
     const backFaceSelector = getBackFaceSelector(cardIndex);
     const frontFaceSelector = getFrontFaceSelector(cardIndex);

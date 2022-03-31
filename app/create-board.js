@@ -32,12 +32,24 @@ function createCol(j, i, rowId) {
     const colElement = `<div class="col pb-4 memory-card" id="${cardIndex}"></div>`;
     const rowIdSelector = `#${rowId}`;
     $(rowIdSelector).append(colElement);
+    addFaces(cardIndex);
+    addEventOnCardClick(cardIndex);
+}
+
+function addFaces(cardIndex) {
     const colIdSelector = `#${cardIndex}`;
-    const cardImgSrc = `assets/images/${g_loadedCards[cardIndex].name}.svg`;
+    addFrontFace(cardIndex, colIdSelector);
+    addBackFace(colIdSelector);
+}
+
+function addBackFace(colIdSelector) {
     const backFaceSuffix = g_isEasyMode ? 'easy' : 'hard';
     const imgBackFace = `<img src="assets/images/time-bomb-${backFaceSuffix}.svg" alt="dos des images"/>`
-    const imgFrontFace = `<img src=${cardImgSrc} alt="images du jeu" style="display: none"/>`;
     $(colIdSelector).append(imgBackFace);
+}
+
+function addFrontFace(cardIndex, colIdSelector) {
+    const cardImgSrc = `assets/images/${g_loadedCards[cardIndex].name}.svg`;
+    const imgFrontFace = `<img src=${cardImgSrc} alt="images du jeu" style="display: none"/>`;
     $(colIdSelector).append(imgFrontFace);
-    addEventOnCardClick(cardIndex);
 }

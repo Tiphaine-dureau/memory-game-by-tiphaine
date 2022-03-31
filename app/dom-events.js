@@ -26,6 +26,6 @@ function addEventOnDifficultyClick() {
  * @param easyMode
  */
 function onDifficultyClick(easyMode) {
-    isEasyMode = easyMode;
+    g_isEasyMode = easyMode;
     resetGame();
 }

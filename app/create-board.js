@@ -2,8 +2,8 @@
  * Affiche dynamiquement et aléatoirement les cases du plateau de jeu
  */
 function createBoardGame() {
-    loadedCards = isEasyMode ? easyBoardCards : hardBoardCards;
-    shuffleCards(loadedCards);
+    g_loadedCards = g_isEasyMode ? easyBoardCards : hardBoardCards;
+    shuffleCards(g_loadedCards);
     $('#game-board').empty();
     createRows();
 }
@@ -33,8 +33,8 @@ function createCol(j, i, rowId) {
     const rowIdSelector = `#${rowId}`;
     $(rowIdSelector).append(colElement);
     const colIdSelector = `#${cardIndex}`;
-    const cardImgSrc = `assets/images/${loadedCards[cardIndex].name}.svg`;
-    const backFaceSuffix = isEasyMode ? 'easy' : 'hard';
+    const cardImgSrc = `assets/images/${g_loadedCards[cardIndex].name}.svg`;
+    const backFaceSuffix = g_isEasyMode ? 'easy' : 'hard';
     const imgBackFace = `<img src="assets/images/time-bomb-${backFaceSuffix}.svg" alt="dos des images"/>`
     const imgFrontFace = `<img src=${cardImgSrc} alt="images du jeu" style="display: none"/>`;
     $(colIdSelector).append(imgBackFace);

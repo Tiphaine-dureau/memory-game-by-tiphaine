@@ -2,7 +2,7 @@
  * Gère la fin d'une partie perdue : réinitialise chrono , fait apparaitre un toast, réinitialise la partie
  */
 function handleGameLost() {
-    clearInterval(gameTimer);
+    clearInterval(g_gameTimer);
     openToast(false);
     resetGame();
 }
@@ -19,11 +19,11 @@ function handleGameWon() {
  * Réintialise la partie
  */
 function resetGame() {
-    isGameActive = false;
-    firstCardIndex = undefined;
-    foundCardPairIds = [];
-    clearInterval(gameTimer);
-    $('#countdown').html(`${maxTime}s`);
+    g_isGameActive = false;
+    g_firstCardIndex = undefined;
+    g_foundCardPairIds = [];
+    clearInterval(g_gameTimer);
+    $('#countdown').html(`${g_maxTime}s`);
     resetProgressBar();
     createBoardGame();
 }

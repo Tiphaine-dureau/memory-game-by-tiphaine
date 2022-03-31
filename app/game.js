@@ -3,13 +3,13 @@
  * A la fin du Chrono appelle un évènement de partie perdue
  */
 function startCountdown() {
-    const numberOfTick = maxTime /* secondes */ * 10;
-    timeTickLeft = numberOfTick;
-    gameTimer = setInterval(function () {
-        timeTickLeft--;
-        updateProgressBar(timeTickLeft, numberOfTick);
-        $('#countdown').html(`${(timeTickLeft / 10).toFixed(0)}s`);
-        if (timeTickLeft <= 0) {
+    const numberOfTick = g_maxTime /* secondes */ * 10;
+    g_timeTickLeft = numberOfTick;
+    g_gameTimer = setInterval(function () {
+        g_timeTickLeft--;
+        updateProgressBar(g_timeTickLeft, numberOfTick);
+        $('#countdown').html(`${(g_timeTickLeft / 10).toFixed(0)}s`);
+        if (g_timeTickLeft <= 0) {
             handleGameLost();
         }
     }, 100);
@@ -21,9 +21,9 @@ function startCountdown() {
  * (puisqu'il n'y a pas de bouton jouer)
  */
 function startGameIfNotActive() {
-    if (!isGameActive) {
+    if (!g_isGameActive) {
         startCountdown();
-        isGameActive = true;
+        g_isGameActive = true;
     }
 }
 
@@ -32,12 +32,12 @@ function startGameIfNotActive() {
  * @param cardIndex
  */
 function onImageClick(cardIndex) {
-    if (!userCanPlay || isCardRevealed(getBackFaceSelector(cardIndex))) {
+    if (!g_userCanPlay || isCardRevealed(getBackFaceSelector(cardIndex))) {
         return;
     }
     startGameIfNotActive();
     toggleCard(cardIndex);
-    if (firstCardIndex === undefined) {
+    if (g_firstCardIndex === undefined) {
         onFirstImageClick(cardIndex);
     } else {
         onSecondImageClick(cardIndex);
@@ -45,11 +45,11 @@ function onImageClick(cardIndex) {
 }
 
 function onFirstImageClick(cardIndex) {
-    firstCardIndex = cardIndex;
+    g_firstCardIndex = cardIndex;
 }
 
 function onSecondImageClick(secondCardIndex) {
-    const isSameCard = loadedCards[secondCardIndex].name === loadedCards[firstCardIndex].name;
+    const isSameCard = g_loadedCards[secondCardIndex].name === g_loadedCards[g_firstCardIndex].name;
     if (!isSameCard) {
         handleDifferentCards(secondCardIndex);
     } else {
@@ -58,18 +58,18 @@ function onSecondImageClick(secondCardIndex) {
 }
 
 function handleDifferentCards(secondCardIndex) {
-    userCanPlay = false;
+    g_userCanPlay = false;
     setTimeout(() => {
         toggleCard(secondCardIndex);
-        toggleCard(firstCardIndex);
-        firstCardIndex = undefined;
-        userCanPlay = true;
+        toggleCard(g_firstCardIndex);
+        g_firstCardIndex = undefined;
+        g_userCanPlay = true;
     }, 500)
 }
 
 function handleSameCards(secondCardIndex) {
-    firstCardIndex = undefined;
-    foundCardPairIds.push(firstCardIndex, secondCardIndex);
+    g_firstCardIndex = undefined;
+    g_foundCardPairIds.push(g_firstCardIndex, secondCardIndex);
     const isGameWon = getIsGameWon();
     if (isGameWon) {
         handleGameWon();

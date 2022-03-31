@@ -1,15 +1,15 @@
 //////////////////
 /// VARIABLES
 //////////////////
-let gameTimer;
-let isGameActive = false;
-let isEasyMode = true;
-let loadedCards = easyBoardCards;
-let firstCardIndex;
-let userCanPlay = true;
-let foundCardPairIds = [];
-let maxTime = 60; // en secondes
-let timeTickLeft;
+let g_gameTimer;
+let g_isGameActive = false;
+let g_isEasyMode = true;
+let g_loadedCards = easyBoardCards;
+let g_firstCardIndex;
+let g_userCanPlay = true;
+let g_foundCardPairIds = [];
+let g_maxTime = 60; // en secondes
+let g_timeTickLeft;
 
 $(document).ready(() => {
     init();

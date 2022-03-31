@@ -3,7 +3,7 @@ function getCardIndex(i, j) {
 }
 
 function getBoardSize() {
-    return Math.sqrt(loadedCards.length);
+    return Math.sqrt(g_loadedCards.length);
 }
 
 function getBackFaceSelector(cardIndex) {
@@ -15,7 +15,7 @@ function getFrontFaceSelector(cardIndex) {
 }
 
 function getIsGameWon() {
-    return foundCardPairIds.length === loadedCards.length;
+    return g_foundCardPairIds.length === g_loadedCards.length;
 }
 
 /**

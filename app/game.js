@@ -30,15 +30,15 @@ function onImageClick(cardIndex) {
     if (!userCanPlay) {
         return;
     }
-    startGameIfNotActive();
     const backFaceSelector = getBackFaceSelector(cardIndex);
-    const frontFaceSelector = getFrontFaceSelector(cardIndex);
-    if ($(backFaceSelector).css('display') !== 'none') {
-        $(backFaceSelector).hide();
-        $(frontFaceSelector).show();
-    } else {
+    if (isCardRevealed(backFaceSelector)) {
+        // On ne fait rien si l'utilisateur a cliqué sur une carte déjà révélée
         return;
     }
+    startGameIfNotActive();
+    const frontFaceSelector = getFrontFaceSelector(cardIndex);
+    $(backFaceSelector).hide();
+    $(frontFaceSelector).show();
     if (firstCardIndex === undefined) {
         onFirstImageClick(cardIndex);
     } else {
@@ -81,4 +81,8 @@ function handleSameCard(secondCardIndex) {
     if (isGameWon) {
         handleGameWon();
     }
+}
+
+function toggleCard() {
+    // TODO affiche ou masque la carte
 }

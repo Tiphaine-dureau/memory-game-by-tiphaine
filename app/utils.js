@@ -18,6 +18,15 @@ function getIsGameWon() {
     return foundCardPairIds.length === loadedCards.length;
 }
 
+/**
+ * La carte est révélée si la backface est masquée (dislay = none)
+ * @param backFaceSelector
+ * @returns {boolean}
+ */
+function isCardRevealed(backFaceSelector) {
+    return $(backFaceSelector).css('display') === 'none';
+}
+
 function changeBackgroundClass(selector, backgroundClass) {
     $(selector)
         .removeClass('bg-success')

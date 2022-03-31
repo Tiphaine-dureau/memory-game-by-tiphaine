@@ -40,29 +40,45 @@ function onImageClick(cardIndex) {
         return;
     }
     if (firstCardIndex === undefined) {
-        firstCardIndex = cardIndex;
+        onFirstImageClick(cardIndex);
     } else {
-        const secondCardIndex = cardIndex;
-        const isSameCard = loadedCards[secondCardIndex].name === loadedCards[firstCardIndex].name;
-        if (!isSameCard) {
-            userCanPlay = false;
-            setTimeout(() => {
-                // Carte qui vient d'être cliquée
-                $(backFaceSelector).show();
-                $(frontFaceSelector).hide();
-                // Première carte déjà retournée
-                $(getBackFaceSelector(firstCardIndex)).show();
-                $(getFrontFaceSelector(firstCardIndex)).hide();
-                firstCardIndex = undefined;
-                userCanPlay = true;
-            }, 500)
-        } else {
-            firstCardIndex = undefined;
-            foundCardPairIds.push(firstCardIndex, secondCardIndex);
-            const isGameWon = getIsGameWon();
-            if (isGameWon) {
-                handleGameWon();
-            }
-        }
+        onSecondImageClick(backFaceSelector, frontFaceSelector, cardIndex);
+    }
+}
+
+function onFirstImageClick(cardIndex) {
+    firstCardIndex = cardIndex;
+}
+
+function onSecondImageClick(backFaceSelector, frontFaceSelector, cardIndex) {
+    const secondCardIndex = cardIndex;
+    const isSameCard = loadedCards[secondCardIndex].name === loadedCards[firstCardIndex].name;
+    if (!isSameCard) {
+        handleDifferentCard(backFaceSelector, frontFaceSelector);
+    } else {
+        handleSameCard(secondCardIndex);
+    }
+}
+
+function handleDifferentCard(backFaceSelector, frontFaceSelector) {
+    userCanPlay = false;
+    setTimeout(() => {
+        // Carte qui vient d'être cliquée
+        $(backFaceSelector).show();
+        $(frontFaceSelector).hide();
+        // Première carte déjà retournée
+        $(getBackFaceSelector(firstCardIndex)).show();
+        $(getFrontFaceSelector(firstCardIndex)).hide();
+        firstCardIndex = undefined;
+        userCanPlay = true;
+    }, 500)
+}
+
+function handleSameCard(secondCardIndex) {
+    firstCardIndex = undefined;
+    foundCardPairIds.push(firstCardIndex, secondCardIndex);
+    const isGameWon = getIsGameWon();
+    if (isGameWon) {
+        handleGameWon();
     }
 }

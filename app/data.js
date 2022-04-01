@@ -68,10 +68,10 @@ const hardBoardCards = [
         name: 'open-treasure-chest'
     },
     {
-        name: 'oyster-pearl'
+        name: 'skull-crossed-bones'
     },
     {
-        name: 'pirate-captain'
+        name: 'spyglass'
     },
     {
         name: 'pirate-flag'
@@ -92,10 +92,10 @@ const hardBoardCards = [
         name: 'open-treasure-chest'
     },
     {
-        name: 'oyster-pearl'
+        name: 'spyglass'
     },
     {
-        name: 'pirate-captain'
+        name: 'skull-crossed-bones'
     },
     {
         name: 'pirate-flag'

@@ -7,13 +7,17 @@ html {
 }
 
 body {
-    background: radial-gradient(rgba(25,25,28,0) 50%,#19191c 80%),conic-gradient(#9c3cf7 0,#19191c 15.2%,#19191c 18.2%,#1e1ae8 20.5%,#19191c 30.2%,#19191c 50%,#0e0ab4 56.5%,#1e1ae8 59.4%,#060551 66.2%,#101057 72.9%,#242473 85.1%,#1e1ae8 89.1%,#0a06b7 90.6%,#19191c 93.7%,#9c3cf7 100%);
+    background: radial-gradient(rgba(25, 25, 28, 0) 50%, #19191c 80%), conic-gradient(#9c3cf7 0, #19191c 15.2%, #19191c 18.2%, #1e1ae8 20.5%, #19191c 30.2%, #19191c 50%, #0e0ab4 56.5%, #1e1ae8 59.4%, #060551 66.2%, #101057 72.9%, #242473 85.1%, #1e1ae8 89.1%, #0a06b7 90.6%, #19191c 93.7%, #9c3cf7 100%);
     color: #F2F2F2;
-    font-family: JetBrains Sans,Helvetica,Arial,sans-serif;
+    font-family: JetBrains Sans, Helvetica, Arial, sans-serif;
 }
 
 h1, h2, footer {
     text-align: center;
+}
+
+.title {
+    text-shadow: -1px 1px #9c3cf7, -2px 2px #9c3cf7, -3px 3px #0d6efd, -4px 4px #0d6efd, -5px 5px #1e1ae8, -6px 6px #1e1ae8, -7px 7px #0e0ab4, -8px 8px #0e0ab4;
 }
 
 @media screen and (min-width: 426px) and (max-width: 1023px) {

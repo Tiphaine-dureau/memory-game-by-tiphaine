@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-    <h1 class="pt-1">Memory-game</h1>
+    <h1 class="pt-1 title">Memory Game</h1>
 </header>
 <main class="container">
     <!--PROGRESS BAR & TIMER-->
@@ -21,15 +21,15 @@
         <div class="row align-items-center">
             <div class="col-10">
                 <div class="progress">
-                    <div class="progress-bar bg-success" id="load" role="progressbar" style="width: 100%"
+                    <div class="progress-bar progress-bar-striped" id="countdown-bar" role="progressbar" style="width: 100%"
                          aria-valuenow="0"
                          aria-valuemin="0"
                          aria-valuemax="100">
                     </div>
                 </div>
             </div>
-            <div class="col-2">
-                <div id="countdown" class="text-end"></div>
+            <div class="col-2 d-flex justify-content-end">
+                <div id="countdown" class="text-end badge bg-primary"></div>
             </div>
         </div>
         <!--BOARD GAME-->
@@ -41,7 +41,7 @@
     <!-- CHOICE DIFFICULTY GAME WITH BUTTONS -->
     <section>
         <div class="d-flex justify-content-center">
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <div class="btn-group btn-group-lg" role="group" aria-label="Basic radio toggle button group">
                 <input type="radio" class="btn-check" name="btnradio" id="btn-radio-easy" autocomplete="off" checked>
                 <label class="btn btn-outline-primary" for="btn-radio-easy">Facile</label>
 

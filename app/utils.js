@@ -61,11 +61,11 @@ function isCardRevealed(cardIndex) {
  * Change la couleur de fond avec les classes Bootstrap
  * Utilisée pour la progress bar et pour le toast
  * @param {string} selector
- * @param {string} backgroundClass (bg-success | bg-warning | bg-danger)
+ * @param {string} backgroundClass (bg-primary | bg-warning | bg-danger)
  */
 function changeBackgroundClass(selector, backgroundClass) {
     $(selector)
-        .removeClass('bg-success')
+        .removeClass('bg-primary')
         .removeClass('bg-warning')
         .removeClass('bg-danger')
         .addClass(backgroundClass);

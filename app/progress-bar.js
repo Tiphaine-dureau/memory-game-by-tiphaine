@@ -14,7 +14,7 @@ function updateProgressBar(timeTickMax) {
 
 /**
  * Change la couleur du background de la progress bar
- * @param {string} backgroundClass (bg-success | bg-warning | bg-danger)
+ * @param {string} backgroundClass (bg-primary | bg-warning | bg-danger)
  */
 function changeProgressBarColor(backgroundClass) {
     changeBackgroundClass('.progress-bar', backgroundClass);
@@ -25,13 +25,14 @@ function changeProgressBarColor(backgroundClass) {
  * @param {number} percent
  */
 function setProgressBarWidth(percent) {
-    $('#load').css('width', `${percent}%`);
+    $('#countdown-bar').css('width', `${percent}%`);
 }
 
 /**
- * Réinitialise la progressBar : remplissage et couleur
+ * Réinitialise la progressBar : remplissage, couleur et animation
  */
 function resetProgressBar() {
+    $('#countdown-bar').removeClass('progress-bar-animated');
     setProgressBarWidth(100);
-    changeProgressBarColor('bg-success');
+    changeProgressBarColor('bg-primary');
 }

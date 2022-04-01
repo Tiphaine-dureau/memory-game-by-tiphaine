@@ -5,6 +5,7 @@
 function startCountdown() {
     const timeTickMax = (g_maxTime * 1000) / g_refreshRate;
     g_timeTickLeft = timeTickMax;
+    $('#countdown-bar').addClass('progress-bar-animated');
     g_gameTimer = setInterval(function () {
         g_timeTickLeft--;
         updateProgressBar(timeTickMax);

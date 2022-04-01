@@ -6,8 +6,8 @@ function addDomEvents() {
 }
 
 /**
- *Au click appelle la fonction qui gère le retournement des cartes
- * @param cardIndex
+ * Au click appelle la fonction qui gère le retournement des cartes
+ * @param {number} cardIndex
  */
 function addEventOnCardClick(cardIndex) {
     $(`#${cardIndex}`).click(() => {
@@ -24,8 +24,9 @@ function addEventOnDifficultyClick() {
 }
 
 /**
- * Par défaut la difficulté du jeu est facile
- * @param easyMode
+ * Stocke la difficulté choisie par l'utilisateur
+ * Et réinitialise le jeu
+ * @param {boolean} easyMode
  */
 function onDifficultyClick(easyMode) {
     g_isEasyMode = easyMode;

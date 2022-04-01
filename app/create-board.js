@@ -1,6 +1,7 @@
 /**
- * Charge les cartes en fonction du choix du jeu de façon aléatoire
- * Vide le plateau du jeu avant d'en créer un nouveau
+ * Crée le plateau de jeu (arpès l'avoir vidé) en fonction de la difficulté
+ * Le plateau possède autant de lignes que de colonnes
+ * Les cartes du plateau sont mélangées au préalable
  */
 function createBoardGame() {
     g_loadedCards = g_isEasyMode ? easyBoardCards : hardBoardCards;
@@ -10,7 +11,7 @@ function createBoardGame() {
 }
 
 /**
- * Création de lignes tant qu'on ne dépasse pas la racine carré de la taille du board
+ * Constructions des lignes
  */
 function createRows() {
     for (let i = 0; i < getBoardSize(); i++) {
@@ -19,9 +20,8 @@ function createRows() {
 }
 
 /**
- * Récupération d'un row id et création dans le dom d'un div avec son id
- * Création de colonnes pour chaque ligne
- * @param i
+ * Construction d'une ligne et des colonnes de cette ligne
+ * @param {number} i
  */
 function createRow(i) {
     const rowId = `row-${i}`;
@@ -31,9 +31,9 @@ function createRow(i) {
 }
 
 /**
- * Pour chaque lignée crée : création d'une colonne tant qu'on ne dépasse pas la racine carré de la taille du board
- * @param i
- * @param rowId
+ * Construction des colonnes d'une ligne
+ * @param {number} i
+ * @param {number} rowId
  */
 function createCols(i, rowId) {
     for (let j = 0; j < getBoardSize(); j++) {
@@ -42,10 +42,10 @@ function createCols(i, rowId) {
 }
 
 /**
- * Création d'un colonne boostrap représentant le dos ou la face des cartes
- * @param j
- * @param i
- * @param rowId
+ * Construction d'une colonne
+ * @param {number} j
+ * @param {number} i
+ * @param {number} rowId
  */
 function createCol(j, i, rowId) {
     const cardIndex = getCardIndex(i, j);
@@ -57,9 +57,8 @@ function createCol(j, i, rowId) {
 }
 
 /**
- * Création d'un sélecteur jquery comportant l'id des cartes
- * Affiche la carte de dos ou de face et en fonction garde son index
- * @param cardIndex
+ * Construction des deux faces d'une carte
+ * @param {number} cardIndex
  */
 function addFaces(cardIndex) {
     const colIdSelector = `#${cardIndex}`;
@@ -68,9 +67,8 @@ function addFaces(cardIndex) {
 }
 
 /**
- * Change le dos de la carte en fonction du choix du jeu
- * Ajoute au selecteur jquery l'image représentant le dos des cartes
- * @param colIdSelector
+ * Construction de la face cachée d'une carte en fonction de la difficulté
+ * @param {string} colIdSelector
  */
 function addBackFace(colIdSelector) {
     const backFaceSuffix = g_isEasyMode ? 'easy' : 'hard';
@@ -79,9 +77,9 @@ function addBackFace(colIdSelector) {
 }
 
 /**
- * Ajoute au selecteur jquery l'image de face en masquée
- * @param cardIndex
- * @param colIdSelector
+ * Construction de la face révélée d'une carte
+ * @param {number} cardIndex
+ * @param {string} colIdSelector
  */
 function addFrontFace(cardIndex, colIdSelector) {
     const cardImgSrc = `assets/images/${g_loadedCards[cardIndex].name}.svg`;

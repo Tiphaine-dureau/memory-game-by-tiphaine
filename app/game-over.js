@@ -24,6 +24,7 @@ function handleGameWon() {
  * Réintialise l'état du jeu
  */
 function resetGame() {
+    g_maxTime = g_isEasyMode ? 60 : 45;
     g_isGameActive = false;
     g_firstCardIndex = undefined;
     g_foundCardPairIndex = [];

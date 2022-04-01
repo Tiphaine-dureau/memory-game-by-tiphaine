@@ -39,7 +39,7 @@ let g_foundCardPairIndex = [];
  * Le temps du compte à rebours (en secondes)
  * @type {number}
  */
-let g_maxTime = 60;
+let g_maxTime;
 /**
  * Le compte à rebours est mis à jour toutes les 100 millisecondes
  * Pour maxTime = 60 secondes * 1000 = 60 000 millisecondes

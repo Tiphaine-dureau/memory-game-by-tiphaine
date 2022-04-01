@@ -72,7 +72,7 @@ function addFaces(cardIndex) {
  */
 function addBackFace(colIdSelector) {
     const backFaceSuffix = g_isEasyMode ? 'easy' : 'hard';
-    const imgBackFace = `<img src="assets/images/time-bomb-${backFaceSuffix}.svg" alt="dos des images"/>`
+    const imgBackFace = `<img src="assets/images/backface-${backFaceSuffix}.svg" alt="dos des images"/>`
     $(colIdSelector).append(imgBackFace);
 }
 

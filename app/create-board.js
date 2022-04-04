@@ -33,7 +33,7 @@ function createRow(i) {
 /**
  * Construction des colonnes d'une ligne
  * @param {number} i
- * @param {number} rowId
+ * @param {string} rowId
  */
 function createCols(i, rowId) {
     for (let j = 0; j < getBoardSize(); j++) {
@@ -45,13 +45,12 @@ function createCols(i, rowId) {
  * Construction d'une colonne
  * @param {number} j
  * @param {number} i
- * @param {number} rowId
+ * @param {string} rowId
  */
 function createCol(j, i, rowId) {
     const cardIndex = getCardIndex(i, j);
     const colElement = `<div class="col pb-4 memory-card" id="${cardIndex}"></div>`;
-    const rowIdSelector = `#${rowId}`;
-    $(rowIdSelector).append(colElement);
+    $(`#${rowId}`).append(colElement);
     addFaces(cardIndex);
     addEventOnCardClick(cardIndex);
 }

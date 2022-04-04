@@ -8,7 +8,7 @@
  * @returns {number} cardIndex
  */
 function getCardIndex(i, j) {
-    return (i * getBoardSize()) + j;
+  return (i * getBoardSize()) + j;
 }
 
 /**
@@ -19,7 +19,7 @@ function getCardIndex(i, j) {
  * @returns {number} La longueur du plateau
  */
 function getBoardSize() {
-    return Math.sqrt(g_loadedCards.length);
+  return Math.sqrt(g_loadedCards.length);
 }
 
 /**
@@ -28,7 +28,7 @@ function getBoardSize() {
  * @returns {string}
  */
 function getBackFaceSelector(cardIndex) {
-    return `#${cardIndex} img:first-child`;
+  return `#${cardIndex} img:first-child`;
 }
 
 /**
@@ -37,7 +37,7 @@ function getBackFaceSelector(cardIndex) {
  * @returns {string}
  */
 function getFrontFaceSelector(cardIndex) {
-    return `#${cardIndex} img:nth-child(2)`;
+  return `#${cardIndex} img:nth-child(2)`;
 }
 
 /**
@@ -45,7 +45,7 @@ function getFrontFaceSelector(cardIndex) {
  * @returns {boolean}
  */
 function getIsGameWon() {
-    return g_foundCardPairIndex.length === g_loadedCards.length;
+  return g_foundCardPairIndex.length === g_loadedCards.length;
 }
 
 /**
@@ -54,7 +54,7 @@ function getIsGameWon() {
  * @returns {boolean}
  */
 function isCardRevealed(cardIndex) {
-    return $(getBackFaceSelector(cardIndex)).css('display') === 'none';
+  return $(getBackFaceSelector(cardIndex)).css('display') === 'none';
 }
 
 /**
@@ -64,11 +64,11 @@ function isCardRevealed(cardIndex) {
  * @param {string} backgroundClass (bg-primary | bg-warning | bg-danger)
  */
 function changeBackgroundClass(selector, backgroundClass) {
-    $(selector)
-        .removeClass('bg-primary')
-        .removeClass('bg-warning')
-        .removeClass('bg-danger')
-        .addClass(backgroundClass);
+  $(selector)
+    .removeClass('bg-primary')
+    .removeClass('bg-warning')
+    .removeClass('bg-danger')
+    .addClass(backgroundClass);
 }
 
 /**
@@ -76,10 +76,10 @@ function changeBackgroundClass(selector, backgroundClass) {
  * @param cards
  */
 function shuffleCards(cards) {
-    for (let i = cards.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [cards[i], cards[j]] = [cards[j], cards[i]];
-    }
+  for (let i = cards.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
 }
 
 /**
@@ -87,6 +87,6 @@ function shuffleCards(cards) {
  * @returns {string}
  */
 function getTimeLeftInSeconds() {
-    const tickPerSecond = 1000 / g_refreshRate;
-    return (g_timeTickLeft / tickPerSecond).toFixed(0);
+  const tickPerSecond = 1000 / g_refreshRate;
+  return (g_timeTickLeft / tickPerSecond).toFixed(0);
 }

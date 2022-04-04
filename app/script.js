@@ -48,7 +48,6 @@ let g_maxTime;
  * @type {number}
  */
 let g_timeTickLeft;
-
 /**
  * Taux de rafraichissement du compte à rebours (en millisecondes)
  * @type {number}
